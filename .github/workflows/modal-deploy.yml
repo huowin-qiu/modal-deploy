@@ -23,8 +23,8 @@ jobs:
 
       - name: Deploy with Modal
         env:
-          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
-          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+          MODAL_TOKEN_ID: ${{ ak-4QmPIaq9ZpNbVQB7sr9xlJ }}
+          MODAL_TOKEN_SECRET: ${{ as-tdnLK7mlfZd6sfqwsE8jG4 }}
         run: |
           set -euo pipefail
           modal deploy main.py
