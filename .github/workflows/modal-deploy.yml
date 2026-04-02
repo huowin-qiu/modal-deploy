@@ -27,4 +27,4 @@ jobs:
           MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
         run: |
           set -euo pipefail
-          modal deploy main.py --name vevc-app --stream-logs
+          modal deploy main.py
