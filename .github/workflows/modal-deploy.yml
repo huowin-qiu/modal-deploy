@@ -2,6 +2,17 @@ name: Modal Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      modal_region:
+        description: 'Modal 运行区域，多个用英文逗号分隔；留空表示不固定区域。'
+        required: false
+        default: ''
+        type: string
+      modal_nonpreemptible:
+        description: '是否启用非抢占 (true / false)'
+        required: false
+        default: 'false'
+        type: string
 
 jobs:
   deploy:
@@ -25,6 +36,9 @@ jobs:
         env:
           MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
           MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+          # 原作者的脚本应该会在底层读取这两个环境变量
+          MODAL_REGION: ${{ github.event.inputs.modal_region }}
+          MODAL_NONPREEMPTIBLE: ${{ github.event.inputs.modal_nonpreemptible }}
         run: |
           set -euo pipefail
           modal deploy main.py
