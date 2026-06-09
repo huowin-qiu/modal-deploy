@@ -2,6 +2,12 @@ name: Modal Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      region:
+        description: '选择部署地区 (例如: uk, us-west, jp)'
+        required: true
+        default: 'uk'
+        type: string
 
 jobs:
   deploy:
@@ -27,4 +33,4 @@ jobs:
           MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
         run: |
           set -euo pipefail
-          modal deploy main.py
+          modal deploy main.py --region ${{ github.event.inputs.region }}
